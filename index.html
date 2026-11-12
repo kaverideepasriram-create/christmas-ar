@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Christmas AR Wonderland</title>
+
+<script type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+</script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: white;
+  background: linear-gradient(160deg, #082e25, #176044, #092b24);
+  min-height: 100vh;
+}
+
+header {
+  padding: 30px 15px 15px;
+}
+
+h1 {
+  font-size: 34px;
+  color: #f8d77b;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #f4eee2;
+  font-size: 16px;
+}
+
+.viewer-area {
+  max-width: 750px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+model-viewer {
+  width: 100%;
+  height: 430px;
+  background: #edf1e9;
+  border-radius: 20px;
+  --poster-color: #edf1e9;
+}
+
+.ar-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #b51e31;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 13px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+h2 {
+  color: #f8d77b;
+  margin-top: 22px;
+}
+
+footer {
+  padding: 25px;
+  color: #e8e8e8;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Christmas AR Wonderland</h1>
+<p class="subtitle">
+Bring Christmas magic into your world!
+</p>
+</header>
+
+<div class="viewer-area">
+
+<model-viewer
+id="santa"
+src="santa.glb"
+alt="Christmas Santa Claus"
+ar
+ar-modes="webxr scene-viewer quick-look"
+ar-placement="floor"
+camera-controls
+auto-rotate
+shadow-intensity="1"
+exposure="1"
+>
+
+<button slot="ar-button" class="ar-button">
+View Santa in AR
+</button>
+
+</model-viewer>
+
+<h2>Santa Claus</h2>
+<p>Meet Santa in augmented reality!</p>
+
+</div>
+
+<footer>
+Created using Meshy AI and GitHub
+</footer>
+
+</body>
+</html>
