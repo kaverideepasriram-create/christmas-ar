@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet a Christmas Character</title>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 30px 15px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(135deg, #07543f, #087b69);
+    }
+    h1 { font-size: 32px; }
+    p { font-size: 17px; }
+    model-viewer {
+      width: 100%;
+      max-width: 650px;
+      height: 500px;
+      margin: 25px auto;
+      display: block;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.13);
+    }
+    button {
+      background: #f5d6a5;
+      color: #174b3d;
+      border: none;
+      border-radius: 25px;
+      padding: 14px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    a { color: white; }
+  </style>
+</head>
+<body>
+  <h1 id="heading">Meet a Christmas Character!</h1>
+  <p id="description">Explore the character in 3D and bring it into your world using AR.</p>
+
+  <model-viewer
+    id="character"
+    src="santa.glb"
+    camera-controls
+    auto-rotate
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    ar-placement="floor"
+    shadow-intensity="1">
+    <button slot="ar-button">View in AR</button>
+  </model-viewer>
+
+  <p>Rotate the model to explore it. Tap View in AR on a compatible phone.</p>
+  <p><a href="./">Back to Christmas AR Wonderland</a></p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("model") || "santa";
+    const names = {
+      santa: "Santa Claus",
+      gingerbread: "Gingerbread Man",
+      reindeer: "Christmas Reindeer",
+      snowman: "Christmas Snowman",
+      kuromi: "Christmas Kuromi",
+      elf: "Christmas Elf"
+    };
+
+    const name = names[file] || names.santa;
+    document.getElementById("heading").textContent = "Meet " + name + "!";
+    document.getElementById("description").textContent =
+      "Discover " + name + ", explore the 3D model and bring it into your world using AR!";
+    document.getElementById("character").src = file + ".glb";
+    document.title = "Meet " + name;
+  </script>
+</body>
+</html>
