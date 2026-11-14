@@ -2,119 +2,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas AR Wonderland</title>
 
-<title>Christmas AR Wonderland</title>
+  <script type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+  </script>
 
-<script type="module"
-src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-</script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
-* {
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      background: linear-gradient(160deg, #082e25, #176044, #092b24);
+      min-height: 100vh;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  color: white;
-  background: linear-gradient(160deg, #082e25, #176044, #092b24);
-  min-height: 100vh;
-}
+    header {
+      padding: 30px 15px 15px;
+    }
 
-header {
-  padding: 30px 15px 15px;
-}
+    h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
 
-h1 {
-  font-size: 34px;
-  color: #f8d77b;
-  margin-bottom: 10px;
-}
+    .intro {
+      font-size: 16px;
+      padding: 0 15px;
+    }
 
-.subtitle {
-  color: #f4eee2;
-  font-size: 16px;
-}
+    .models {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 20px;
+    }
 
-.viewer-area {
-  max-width: 750px;
-  margin: 20px auto;
-  padding: 15px;
-}
+    .card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 18px;
+      width: min(100%, 450px);
+    }
 
-model-viewer {
-  width: 100%;
-  height: 430px;
-  background: #edf1e9;
-  border-radius: 20px;
-  --poster-color: #edf1e9;
-}
+    h2 {
+      margin-top: 5px;
+    }
 
-.ar-button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: #b51e31;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 13px 20px;
-  font-size: 15px;
-  cursor: pointer;
-}
+    model-viewer {
+      width: 100%;
+      height: 350px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      --poster-color: transparent;
+    }
 
-h2 {
-  color: #f8d77b;
-  margin-top: 22px;
-}
+    .instructions {
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-footer {
-  padding: 25px;
-  color: #e8e8e8;
-  font-size: 13px;
-}
-</style>
+    footer {
+      padding: 20px;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-<h1>Christmas AR Wonderland</h1>
-<p class="subtitle">
-Bring Christmas magic into your world!
-</p>
-</header>
+  <header>
+    <h1>Christmas AR Wonderland</h1>
+    <p class="intro">
+      Explore Christmas characters in 3D and bring them into your world using Augmented Reality!
+    </p>
+  </header>
 
-<div class="viewer-area">
+  <main class="models">
 
-<model-viewer
-id="santa"
-src="santa.glb"
-alt="Christmas Santa Claus"
-ar
-ar-modes="webxr scene-viewer quick-look"
-ar-placement="floor"
-camera-controls
-auto-rotate
-shadow-intensity="1"
-exposure="1"
->
+    <section class="card">
+      <h2>Santa Claus</h2>
+      <model-viewer
+        src="santa.glb"
+        alt="Santa Claus 3D model"
+        camera-controls
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        ar-placement="floor"
+        shadow-intensity="1">
+        <button slot="ar-button">View Santa in AR</button>
+      </model-viewer>
+      <p class="instructions">
+        Rotate and explore Santa. Tap the AR button on a compatible device to place him in your space.
+      </p>
+    </section>
 
-<button slot="ar-button" class="ar-button">
-View Santa in AR
-</button>
+    <section class="card">
+      <h2>Gingerbread Man</h2>
+      <model-viewer
+        src="gingerbread.glb"
+        alt="Gingerbread Man 3D model"
+        camera-controls
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        ar-placement="floor"
+        shadow-intensity="1">
+        <button slot="ar-button">View Gingerbread Man in AR</button>
+      </model-viewer>
+      <p class="instructions">
+        Explore the Gingerbread Man in 3D and use AR to place him in your space.
+      </p>
+    </section>
 
-</model-viewer>
+  </main>
 
-<h2>Santa Claus</h2>
-<p>Meet Santa in augmented reality!</p>
+  <footer>
+    Made with creativity for Christmas
+  </footer>
 
-</div>
-
-<footer>
-Created using Meshy AI and GitHub
-</footer>
+</body>
+</html>
