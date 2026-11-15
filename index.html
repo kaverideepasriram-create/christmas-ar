@@ -39,8 +39,9 @@
     }
 
     .models {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      grid-auto-flow: row;
       gap: 20px;
       padding: 20px;
       max-width: 1500px;
@@ -57,7 +58,7 @@
 
     @media (max-width: 650px) {
       .models {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
         gap: 8px;
         padding: 8px;
       }
