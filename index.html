@@ -39,19 +39,36 @@
     }
 
     .models {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
       padding: 20px;
+      max-width: 1500px;
+      margin: 0 auto;
     }
 
     .card {
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.25);
       border-radius: 18px;
-      padding: 18px;
-      width: min(100%, 450px);
+      padding: 14px;
+      min-width: 0;
+    }
+
+    @media (max-width: 650px) {
+      .models {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 12px;
+      }
+
+      model-viewer {
+        height: 240px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
     }
 
     h2 {
