@@ -1,20 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KOKO'S KRISTMAS Wonderland</title>
-
-  <script type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-  </script>
-
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -23,72 +15,30 @@
       background: linear-gradient(160deg, #082e25, #176044, #092b24);
       min-height: 100vh;
     }
+    header { padding: 30px 15px 15px; }
+    h1 { font-size: 34px; margin-bottom: 10px; }
+    .intro { font-size: 16px; padding: 0 15px; }
 
-    header {
-      padding: 30px 15px 15px;
-    }
-
-    h1 {
-      font-size: 34px;
-      margin-bottom: 10px;
-    }
-
-    .intro {
-      font-size: 16px;
-      padding: 0 15px;
-    }
-
-    .models {
+    /* Always show exactly three cards in each row. */
+    main.models {
       display: grid !important;
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      grid-template-columns: repeat(3,  minmax(0, 1fr)) !important;
       grid-auto-flow: row;
-      gap: 20px;
-      padding: 20px;
+      width: 100%;
       max-width: 1500px;
       margin: 0 auto;
+      gap: 20px;
+      padding: 20px;
     }
-
     .card {
+      width: 100%;
+      min-width: 0;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.25);
       border-radius: 18px;
       padding: 14px;
-      min-width: 0;
     }
-
-    @media (max-width: 650px) {
-      .models {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 8px;
-        padding: 8px;
-      }
-
-      .card {
-        padding: 6px;
-        border-radius: 12px;
-      }
-
-      .card h2 {
-        font-size: 13px;
-      }
-
-      model-viewer {
-        height: 150px;
-      }
-
-      .instructions {
-        font-size: 10px;
-      }
-
-      h1 {
-        font-size: 23px;
-      }
-    }
-
-    h2 {
-      margin-top: 5px;
-    }
-
+    h2 { margin-top: 5px; }
     model-viewer {
       width: 100%;
       height: 350px;
@@ -96,139 +46,78 @@
       border-radius: 14px;
       --poster-color: transparent;
     }
+    .instructions { font-size: 14px; line-height: 1.5; }
+    footer { padding: 20px; font-size: 13px; }
 
-    .instructions {
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    footer {
-      padding: 20px;
-      font-size: 13px;
+    @media (max-width: 650px) {
+      main.models {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px;
+        padding: 8px;
+      }
+      .card { padding: 6px; border-radius: 12px; }
+      .card h2 { font-size: 13px; }
+      model-viewer { height: 150px; }
+      .instructions { font-size: 10px; }
+      h1 { font-size: 23px; }
     }
   </style>
 </head>
-
 <body>
-
   <header>
     <h1>KOKO'S KRISTMAS WONDERLAND</h1>
-    <p class="intro">
-      Enjoy the Augmented Reality!
-    </p>
+    <p class="intro">Enjoy the Augmented Reality!</p>
   </header>
 
   <main class="models">
-
     <section class="card">
       <h2>Santa Claus</h2>
-      <model-viewer
-        src="santa.glb"
-        alt="Santa Claus 3D model"
-        camera-controls
-        auto-rotate
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        ar-placement="floor"
-        shadow-intensity="1">
+      <model-viewer src="santa.glb" alt="Santa Claus 3D model" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1">
         <button slot="ar-button">View Santa in AR</button>
       </model-viewer>
-      <p class="instructions">
-        Rotate and explore Santa. Tap the AR button on a compatible device to place him in your space.
-      </p>
+      <p class="instructions">Rotate and explore Santa. Tap the AR button on a compatible device to place him in your space.</p>
     </section>
 
     <section class="card">
       <h2>Gingerbread Man</h2>
-      <model-viewer
-        src="gingerbread.glb"
-        alt="Gingerbread Man 3D model"
-        camera-controls
-        auto-rotate
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        ar-placement="floor"
-        shadow-intensity="1">
+      <model-viewer src="gingerbread.glb" alt="Gingerbread Man 3D model" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1">
         <button slot="ar-button">View Gingerbread Man in AR</button>
       </model-viewer>
-      <p class="instructions">
-        Explore the Gingerbread Man in 3D and use AR to place him in your space.
+      <p class="instructions">Explore the Gingerbread Man in 3D and use AR to place him in your space.</p>
     </section>
-      <section class="card">
-  <h2>Christmas Reindeer</h2>
-  <model-viewer
-    src="reindeer.glb"
-    alt="Christmas Reindeer 3D model"
-    camera-controls
-    auto-rotate
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    ar-placement="floor"
-    shadow-intensity="1">
-    <button slot="ar-button">View Reindeer in AR</button>
-  </model-viewer>
-  <p class="instructions">
-    Explore the Christmas Reindeer in 3D and use AR to place it in your space.
-  </p>
-</section>
+
     <section class="card">
-  <h2>Christmas Snowman</h2>
-  <model-viewer
-    src="snowman.glb"
-    alt="Christmas Snowman 3D model"
-    camera-controls
-    auto-rotate
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    ar-placement="floor"
-    shadow-intensity="1">
-    <button slot="ar-button">View Snowman in AR</button>
-  </model-viewer>
-  <p class="instructions">
-    Explore the Christmas Snowman in 3D and use AR to place him in your space.
-  </p>
-</section>
-    
+      <h2>Christmas Reindeer</h2>
+      <model-viewer src="reindeer.glb" alt="Christmas Reindeer 3D model" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1">
+        <button slot="ar-button">View Reindeer in AR</button>
+      </model-viewer>
+      <p class="instructions">Explore the Christmas Reindeer in 3D and use AR to place it in your space.</p>
+    </section>
 
-<section class="card">
-  <h2>Christmas Kuromi</h2>
-  <model-viewer
-    src="kuromi.glb"
-    alt="Christmas Kuromi 3D model"
-    camera-controls
-    auto-rotate
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    ar-placement="floor"
-    shadow-intensity="1">
-    <button slot="ar-button">View Christmas Kuromi in AR</button>
-  </model-viewer>
-  <p class="instructions">
-    Explore Christmas Kuromi in 3D and use AR to place her in your space.
-  </p>
-</section>
+    <section class="card">
+      <h2>Christmas Snowman</h2>
+      <model-viewer src="snowman.glb" alt="Christmas Snowman 3D model" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1">
+        <button slot="ar-button">View Snowman in AR</button>
+      </model-viewer>
+      <p class="instructions">Explore the Christmas Snowman in 3D and use AR to place him in your space.</p>
+    </section>
 
-<section class="card">
-  <h2>Christmas Elf</h2>
-  <model-viewer
-    src="elf.glb"
-    alt="Christmas Elf 3D model"
-    camera-controls
-    auto-rotate
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    ar-placement="floor"
-    shadow-intensity="1">
-    <button slot="ar-button">View Christmas Elf in AR</button>
-  </model-viewer>
-  <p class="instructions">
-    Explore the Christmas Elf in 3D and use AR to place it in your space.
-  </p>
-</section>
-    </main>
-<footer>
-  Made with creativity for Christmas
-</footer>
+    <section class="card">
+      <h2>Christmas Kuromi</h2>
+      <model-viewer src="kuromi.glb" alt="Christmas Kuromi 3D model" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1">
+        <button slot="ar-button">View Christmas Kuromi in AR</button>
+      </model-viewer>
+      <p class="instructions">Explore Christmas Kuromi in 3D and use AR to place her in your space.</p>
+    </section>
 
+    <section class="card">
+      <h2>Christmas Elf</h2>
+      <model-viewer src="elf.glb" alt="Christmas Elf 3D model" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1">
+        <button slot="ar-button">View Christmas Elf in AR</button>
+      </model-viewer>
+      <p class="instructions">Explore the Christmas Elf in 3D and use AR to place it in your space.</p>
+    </section>
+  </main>
+  <footer>Made with creativity for Christmas</footer>
 </body>
 </html>
