@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KOKO'S KRISTMAS Wonderland</title>
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  
   <style>
     * { box-sizing: border-box; }
     body {
@@ -47,6 +47,9 @@
       --poster-color: transparent;
     }
     .instructions { font-size: 14px; line-height: 1.5; }
+    .ar-launch { display:inline-block; margin-top:10px; padding:11px 18px; border:0; border-radius:9px; background:#fff; color:#123c2e; font-size:15px; font-weight:bold; cursor:pointer; }
+    .ar-status { min-height:36px; font-size:13px; line-height:1.4; margin:9px 0 0; }
+    .load-status { padding:8px 14px; font-size:14px; }
     footer { padding: 20px; font-size: 13px; }
 
     @media (min-width: 651px) and (max-width: 950px) {
@@ -70,14 +73,16 @@
   <header>
     <h1>KOKO'S KRISTMAS WONDERLAND</h1>
     <p class="intro">Enjoy the Augmented Reality!</p>
-    <p class="intro">For the best experience, open this page in Safari on iPhone or Chrome on Android.</p>
+    <p class="intro">Open in Safari on iPhone or Chrome on Android. An internet connection is needed to load the characters.</p>
+    <p id="load-status" class="load-status" role="status">Loading the 3D viewer...</p>
   </header>
 
   <main class="models">
     <section class="card">
       <h2>Meet Santa</h2>
       <model-viewer src="santa.glb" loading="lazy" alt="Santa Claus 3D model" camera-controls auto-rotate ar ar-modes="scene-viewer webxr quick-look" ar-placement="floor" shadow-intensity="1">
-        <button slot="ar-button">View Santa in AR</button>
+        <button class="ar-launch" type="button" data-ar-target="santa">View Santa in AR</button>
+      <p class="ar-status" id="status-santa" role="status">Tap to try the AR option supported by this phone.</p>
       </model-viewer>
       <p class="instructions">Rotate and explore Santa. Tap the AR button on a compatible device to place him in your space.</p>
     </section>
@@ -85,7 +90,8 @@
     <section class="card">
       <h2>Meet Gingerbread Man</h2>
       <model-viewer src="gingerbread.glb" loading="lazy" alt="Gingerbread Man 3D model" camera-controls auto-rotate ar ar-modes="scene-viewer webxr quick-look" ar-placement="floor" shadow-intensity="1">
-        <button slot="ar-button">View Gingerbread Man in AR</button>
+        <button class="ar-launch" type="button" data-ar-target="gingerbread">View Gingerbread Man in AR</button>
+      <p class="ar-status" id="status-gingerbread" role="status">Tap to try the AR option supported by this phone.</p>
       </model-viewer>
       <p class="instructions">Explore the Gingerbread Man in 3D and use AR to place him in your space.</p>
     </section>
@@ -93,7 +99,8 @@
     <section class="card">
       <h2>Meet Reindeer</h2>
       <model-viewer src="reindeer.glb" loading="lazy" alt="Christmas Reindeer 3D model" camera-controls auto-rotate ar ar-modes="scene-viewer webxr quick-look" ar-placement="floor" shadow-intensity="1">
-        <button slot="ar-button">View Reindeer in AR</button>
+        <button class="ar-launch" type="button" data-ar-target="reindeer">View Reindeer in AR</button>
+      <p class="ar-status" id="status-reindeer" role="status">Tap to try the AR option supported by this phone.</p>
       </model-viewer>
       <p class="instructions">Explore the Christmas Reindeer in 3D and use AR to place it in your space.</p>
     </section>
@@ -101,7 +108,8 @@
     <section class="card">
       <h2>Meet Snowman</h2>
       <model-viewer src="snowman.glb" loading="lazy" alt="Christmas Snowman 3D model" camera-controls auto-rotate ar ar-modes="scene-viewer webxr quick-look" ar-placement="floor" shadow-intensity="1">
-        <button slot="ar-button">View Snowman in AR</button>
+        <button class="ar-launch" type="button" data-ar-target="snowman">View Snowman in AR</button>
+      <p class="ar-status" id="status-snowman" role="status">Tap to try the AR option supported by this phone.</p>
       </model-viewer>
       <p class="instructions">Explore the Christmas Snowman in 3D and use AR to place him in your space.</p>
     </section>
@@ -110,7 +118,8 @@
     <section class="card">
       <h2>Meet Elf</h2>
       <model-viewer src="elf.glb" loading="lazy" alt="Christmas Elf 3D model" camera-controls auto-rotate ar ar-modes="scene-viewer webxr quick-look" ar-placement="floor" shadow-intensity="1">
-        <button slot="ar-button">View Christmas Elf in AR</button>
+        <button class="ar-launch" type="button" data-ar-target="elf">View Christmas Elf in AR</button>
+      <p class="ar-status" id="status-elf" role="status">Tap to try the AR option supported by this phone.</p>
       </model-viewer>
       <p class="instructions">Explore the Christmas Elf in 3D and use AR to place it in your space.</p>
     </section>
@@ -119,5 +128,40 @@
     Made with creativity for Christmas
     <p>If the AR option is not available, you can still rotate and explore the 3D character. On Android, AR also requires a compatible phone with Google Play Services for AR installed and updated.</p>
   </footer>
+  <script type="module">
+    const loadStatus = document.getElementById('load-status');
+    let ready = false;
+    try {
+      await import('https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js');
+      ready = true;
+    } catch (firstError) {
+      try {
+        await import('https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js');
+        ready = true;
+      } catch (secondError) {
+        loadStatus.textContent = 'The 3D viewer could not load. Check the internet connection and reopen this page in Safari or Chrome.';
+      }
+    }
+    if (ready) {
+      loadStatus.textContent = '3D viewer ready. Choose a character and tap its AR button.';
+      document.querySelectorAll('[data-ar-target]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const key = button.dataset.arTarget;
+          const viewer = button.parentElement.querySelector('model-viewer');
+          const status = document.getElementById('status-' + key);
+          if (!viewer || !viewer.loaded) {
+            status.textContent = 'This character is still loading. Please wait a moment and try again.';
+            return;
+          }
+          try {
+            await viewer.activateAR();
+            status.textContent = 'Opening the AR experience...';
+          } catch (error) {
+            status.textContent = 'AR could not start on this phone. On Android, try Chrome and check Google Play Services for AR compatibility. You can still rotate the 3D character above.';
+          }
+        });
+      });
+    }
+  </script>
 </body>
 </html>
